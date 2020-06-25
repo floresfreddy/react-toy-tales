@@ -7,11 +7,14 @@ import ToyContainer from './components/ToyContainer'
 
 import data from './data'
 
+import toys from './data.js'
+
 
 class App extends React.Component{
 
   state = {
-    display: false
+    display: false,
+    toys: toys
   }
 
   handleClick = () => {
@@ -21,20 +24,26 @@ class App extends React.Component{
     })
   }
 
+  createToy = (newToy) =>{
+    console.log(newToy)
+    
+
+  }
+
   render(){
     return (
       <>
         <Header/>
         { this.state.display
             ?
-          <ToyForm/>
+          <ToyForm create={this.createToy}/>
             :
           null
         }
         <div className="buttonContainer">
           <button onClick={this.handleClick}> Add a Toy </button>
         </div>
-        <ToyContainer/>
+        <ToyContainer toys={this.state.toys}/>
       </>
     );
   }
